@@ -1,9 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
+import HomeView from "./views/Home";
 
 function App() {
+
   return (
-    <p>Fox Entregas</p>
+    <HomeView />
   );
 }
 
