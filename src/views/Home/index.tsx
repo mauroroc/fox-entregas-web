@@ -3,22 +3,41 @@ import bgMobile from "../../assets/img/bg-fox-entregas-mobile.png"
 import bgDesktop from "../../assets/img/bg-fox-entregas-desktop.png"
 import { Container } from "react-bootstrap"
 import Button from "../../components/Button"
+import Layout from "../../components/Layout"
 
 export default function HomeView() {
   return (
-    <Banner className="vh-100">
-      <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
-        <Title className="text-white text-center text-lg-start mt-auto">Fazemos sua entrega de forma rápida e barata</Title>
-        <Button variant="success" className="mb-2 mt-auto">Criar Conta</Button>
-        <Button variant="success" className="mb-4">Fazer Login</Button>
-      </Container>
-    </ Banner>
+    <Layout>
+      <Banner className="vh-100">
+        <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
+          <Title className="text-white text-center text-lg-start mt-auto">Fazemos sua entrega de forma rápida e barata</Title>
+          <Button variant="success" className="mb-2 mt-auto">Criar Conta</Button>
+          <Button variant="success" className="mb-4">Fazer Login</Button>
+        </Container>
+      </Banner>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+    </Layout>
   )
 }
 
 const Banner = styled.div`
   background: url(${bgMobile}) no-repeat center center;
   background-size: cover;
+  padding-top: 71px;
   @media (min-width: 576px) {
     background-image: url(${bgDesktop});
   }
