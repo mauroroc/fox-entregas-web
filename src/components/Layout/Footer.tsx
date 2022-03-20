@@ -3,18 +3,19 @@ import LogoWhite from "../../assets/img/logo-fox-entregas-white.svg"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookSquare, faInstagram } from "@fortawesome/free-brands-svg-icons"
+import { Link } from "react-router-dom"
 
 export default function Footer() {
   return (
     <FooterStyled className="text-center pt-4 pb-5 py-lg-3">
       <Container className="d-lg-flex align-items-center">
-        <a href="/">
+        <Link to="/">
           <LogoStyled src={LogoWhite} alt="Logo Fox Entregas" width={255} height={67} />
-        </a>
+        </Link>
         <Nav className="flex-column flex-lg-row my-4 my-lg-0 ms-auto">
-          <Nav.Link href="/" className="text-white">Inicio</Nav.Link>
-          <Nav.Link href="/cadastro" className="text-white">Cadastro</Nav.Link>
-          <Nav.Link href="/login" className="text-white">Login</Nav.Link>
+          <Nav.Link to="/" as={Link} className="text-white">Inicio</Nav.Link>
+          <Nav.Link to="/cadastro" as={Link} className="text-white">Cadastro</Nav.Link>
+          <Nav.Link to="/login" as={Link} className="text-white">Login</Nav.Link>
           <Nav.Link href="/termos-de-uso.pdf" target="_blank" className="text-white">Termos de Uso</Nav.Link>
         </Nav>
         <Nav className="justify-content-center">

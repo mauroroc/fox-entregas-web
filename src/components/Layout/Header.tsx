@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 type Props = {
   startTransparent?: boolean
@@ -31,7 +32,7 @@ export default function Header({startTransparent = false}: Props) {
   return (
     <NavbarStyled fixed='top' expand='lg' bg={isTransparent ? undefined : 'white'}>
       <Container>
-        <NavbarBrandStyled href="/">
+        <NavbarBrandStyled to="/" as={Link}>
           <LogoStyled src={isTransparent ? LogoWhite : LogoBlue} alt="Logo Fox Entregas" width={194} height={51} />  
         </NavbarBrandStyled>
         <Navbar.Toggle aria-controls='menu-header' className="border-0">
