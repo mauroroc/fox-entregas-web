@@ -1,9 +1,9 @@
-import HomeView from "./views/Home";
+import Routes from "./routes";
 
 function App() {
 
   return (
-    <HomeView />
+    <Routes />
   );
 }
 

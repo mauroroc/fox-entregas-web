@@ -7,8 +7,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function Header() {
-  const [isTransparent, setIsTransparent] = useState(true)
+type Props = {
+  startTransparent?: boolean
+}
+export default function Header({startTransparent = false}: Props) {
+  const [isTransparent, setIsTransparent] = useState(startTransparent)
   useEffect(() => {
     const handleScrollChange = () => {
       if (window.scrollY < 60) {
@@ -17,12 +20,14 @@ export default function Header() {
         setIsTransparent(false)
       }
     }
-    window.addEventListener('scroll', handleScrollChange)
-    const clearEvent = () => {
-      window.removeEventListener('scroll', handleScrollChange)
+    if (startTransparent) {
+      window.addEventListener('scroll', handleScrollChange)
+      const clearEvent = () => {
+        window.removeEventListener('scroll', handleScrollChange)
+      }
+      return clearEvent
     }
-    return clearEvent
-  }, [])
+  }, [startTransparent])
   return (
     <NavbarStyled fixed='top' expand='lg' bg={isTransparent ? undefined : 'white'}>
       <Container>
