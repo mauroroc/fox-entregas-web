@@ -40,9 +40,9 @@ export default function Header({startTransparent = false}: Props) {
         </Navbar.Toggle>
         <NavBarCollapseStyled id='menu-header'>
           <Nav className="text-center align-items-center ms-auto">
-            <NavLinkStyled href="/" $isTransparent={isTransparent}>Inicio</NavLinkStyled>
-            <Button href="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar Conta</Button>
-            <Button href="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer Login</Button>
+            <NavLinkStyled forwardedAs={Link} to="/" $isTransparent={isTransparent}>Inicio</NavLinkStyled>
+            <Button to="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar Conta</Button>
+            <Button to="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer Login</Button>
           </Nav>
         </NavBarCollapseStyled>
       </Container>

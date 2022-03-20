@@ -7,12 +7,12 @@ import Layout from "../../components/Layout"
 
 export default function HomeView() {
   return (
-    <Layout startTransparent={true}>
+    <Layout startTransparent={true} withoutMargin>
       <Banner className="vh-100">
         <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
           <Title className="text-white text-center text-lg-start mt-auto">Fazemos sua entrega de forma rápida e barata</Title>
-          <Button variant="success" className="mb-2 mt-auto">Criar Conta</Button>
-          <Button variant="success" className="mb-4">Fazer Login</Button>
+          <Button to="/cadastro" variant="success" className="mb-2 mt-auto">Criar Conta</Button>
+          <Button to="/login" variant="success" className="mb-4">Fazer Login</Button>
         </Container>
       </Banner>
     </Layout>

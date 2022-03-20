@@ -5,9 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookSquare, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
 
-export default function Footer() {
+type Props = {
+  withoutMargin?: boolean
+}
+
+export default function Footer({withoutMargin = false}: Props) {
   return (
-    <FooterStyled className="text-center pt-4 pb-5 py-lg-3">
+    <FooterStyled className={`text-center pt-4 pb-5 py-lg-3 ${withoutMargin ? '' : 'mt-5'}`}>
       <Container className="d-lg-flex align-items-center">
         <Link to="/">
           <LogoStyled src={LogoWhite} alt="Logo Fox Entregas" width={255} height={67} />
