@@ -1,4 +1,4 @@
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
@@ -6,6 +6,10 @@ import FormField from "../../components/FormField";
 import Layout from "../../components/Layout";
 import PageTitle from "../../components/PageTitle";
 import * as yup from 'yup';
+import { createUser } from "../../services/createUser";
+import { FirebaseError } from "firebase/app";
+import { AuthErrorCodes } from "firebase/auth";
+import { toast } from "react-toastify";
 
 type FormValues = {
   name: string
@@ -37,8 +41,16 @@ export function RegisterView() {
       agree: yup.boolean()
         .equals([true],'É obrigatorio aceitar os termos.')
     }),
-      onSubmit: (values) => {
-      console.log(values)
+      onSubmit: async (values) => {
+      try {
+        await createUser(values)
+      } catch (error) {
+        if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
+          formik.setFieldError('email', 'Este e-mail já está em uso')
+          return
+        }       
+        toast.error('Ocorreu um erro ao cadastrar. Tente novamente!') 
+      }
     }
   })
   const getFieldProps = (fieldName: keyof FormValues, label: string, placeholder: string) => ({
@@ -85,7 +97,7 @@ export function RegisterView() {
                 </Form.Control.Feedback>
               </Form.Group>
               <div className="d-grid mb-4">
-                <Button type="submit">
+                <Button type="submit" loading={formik.isValidating || formik.isSubmitting} disabled={formik.isValidating || formik.isSubmitting}>
                   Criar Conta
                 </Button>
             </div>
