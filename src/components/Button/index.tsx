@@ -1,13 +1,21 @@
-import { Button as ButtonBootstrap, ButtonProps } from 'react-bootstrap'
+import { Button as ButtonBootstrap, ButtonProps, Spinner } from 'react-bootstrap'
 import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
 
 type Props = {
   to?: string,
+  loading?: boolean
 } & ButtonProps
 
-export default function Button({ to, ...otherProps}: Props) {
-  const button = <ButtonStyled {...otherProps} />
+export default function Button({ to, children, loading = false, ...otherProps}: Props) {
+  const button = <ButtonStyled {...otherProps} role={undefined}>
+    {loading && (
+      <Spinner animation='border' role='status' size='sm' className='me-2'>
+        <span className="visually-hidden">Carregando...</span>
+      </Spinner>
+    )}
+    {children}
+  </ButtonStyled>
   if (to) {
     return (
       <LinkContainer to={to}>
