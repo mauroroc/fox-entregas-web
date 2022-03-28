@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import FormField from "../../components/FormField";
 import Layout from "../../components/Layout";
@@ -10,6 +10,8 @@ import { createUser } from "../../services/createUser";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes } from "firebase/auth";
 import { toast } from "react-toastify";
+import { updateUser } from "../../store/slices/userSlices";
+import { useDispatch } from "react-redux";
 
 type FormValues = {
   name: string
@@ -20,6 +22,8 @@ type FormValues = {
 }
 
 export function RegisterView() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const formik = useFormik<FormValues>({
     initialValues: {
       name:'',
@@ -43,7 +47,10 @@ export function RegisterView() {
     }),
       onSubmit: async (values) => {
       try {
-        await createUser(values)
+        const user = await createUser(values)
+        const action = updateUser(user)
+        dispatch(action)
+        navigate('/novo-pedido')
       } catch (error) {
         if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
           formik.setFieldError('email', 'Este e-mail já está em uso')
