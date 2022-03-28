@@ -16,8 +16,7 @@ export default function HomeView() {
           <Title className="text-white text-center text-lg-start mt-auto">Fazemos sua entrega de forma rápida e barata</Title>
           {isUserLoggedIn ? (
             <>
-              <Button to="/novo-pedido" variant="success" className="mb-2 mt-auto">Novo Pedido</Button>
-              <Button variant="success" className="mb-4">Sair</Button>
+              <Button to="/novo-pedido" variant="success" className="mb-2 mt-auto">Novo Pedido</Button>              
             </>
           ) : (
             <>

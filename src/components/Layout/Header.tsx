@@ -6,14 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectIsUserLoggedIn } from "../../store/slices/userSlices";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, selectIsUserLoggedIn } from "../../store/slices/userSlices";
+import { logoutUser } from "../../services/logoutUser";
+import { toast } from "react-toastify";
 
 type Props = {
   startTransparent?: boolean
 }
 export default function Header({startTransparent = false}: Props) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const isUserLoggedIn = useSelector(selectIsUserLoggedIn)
   const [isTransparent, setIsTransparent] = useState(startTransparent)
   useEffect(() => {
@@ -32,6 +36,15 @@ export default function Header({startTransparent = false}: Props) {
       return clearEvent
     }
   }, [startTransparent])
+  const handleLogout = async () => {
+    try {
+      await logoutUser()
+      dispatch(deleteUser())
+      navigate('/login')
+    } catch {
+      toast.error('Falha ao sair')
+    }    
+  }
   return (
     <NavbarStyled fixed='top' expand='lg' bg={isTransparent ? undefined : 'white'}>
       <Container>
@@ -47,7 +60,7 @@ export default function Header({startTransparent = false}: Props) {
             {isUserLoggedIn ? (
               <>
                 <Button to="/novo-pedido" className="mt-2 mt-lg-0 ms-lg-4">Novo Pedido</Button>
-                <Button className="mt-2 mt-lg-0 ms-lg-4">Sair</Button>
+                <Button onClick={handleLogout} className="mt-2 mt-lg-0 ms-lg-4">Sair</Button>
               </>
             ) : (
               <>
