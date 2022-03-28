@@ -7,11 +7,14 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsUserLoggedIn } from "../../store/slices/userSlices";
 
 type Props = {
   startTransparent?: boolean
 }
 export default function Header({startTransparent = false}: Props) {
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn)
   const [isTransparent, setIsTransparent] = useState(startTransparent)
   useEffect(() => {
     const handleScrollChange = () => {
@@ -41,8 +44,17 @@ export default function Header({startTransparent = false}: Props) {
         <NavBarCollapseStyled id='menu-header'>
           <Nav className="text-center align-items-center ms-auto">
             <NavLinkStyled forwardedAs={Link} to="/" $isTransparent={isTransparent}>Inicio</NavLinkStyled>
-            <Button to="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar Conta</Button>
-            <Button to="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer Login</Button>
+            {isUserLoggedIn ? (
+              <>
+                <Button to="/novo-pedido" className="mt-2 mt-lg-0 ms-lg-4">Novo Pedido</Button>
+                <Button className="mt-2 mt-lg-0 ms-lg-4">Sair</Button>
+              </>
+            ) : (
+              <>
+                <Button to="/cadastro" className="mt-2 mt-lg-0 ms-lg-4">Criar Conta</Button>
+                <Button to="/login" className="mt-2 mt-lg-0 ms-lg-4">Fazer Login</Button>
+              </>
+          )}
           </Nav>
         </NavBarCollapseStyled>
       </Container>

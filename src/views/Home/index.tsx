@@ -4,15 +4,27 @@ import bgDesktop from "../../assets/img/bg-fox-entregas-desktop.png"
 import { Container } from "react-bootstrap"
 import Button from "../../components/Button"
 import Layout from "../../components/Layout"
+import { useSelector } from "react-redux"
+import { selectIsUserLoggedIn } from "../../store/slices/userSlices"
 
 export default function HomeView() {
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn)
   return (
     <Layout startTransparent={true} withoutMargin>
       <Banner className="vh-100">
         <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
           <Title className="text-white text-center text-lg-start mt-auto">Fazemos sua entrega de forma rápida e barata</Title>
-          <Button to="/cadastro" variant="success" className="mb-2 mt-auto">Criar Conta</Button>
-          <Button to="/login" variant="success" className="mb-4">Fazer Login</Button>
+          {isUserLoggedIn ? (
+            <>
+              <Button to="/novo-pedido" variant="success" className="mb-2 mt-auto">Novo Pedido</Button>
+              <Button variant="success" className="mb-4">Sair</Button>
+            </>
+          ) : (
+            <>
+              <Button to="/cadastro" variant="success" className="mb-2 mt-auto">Criar Conta</Button>
+              <Button to="/login" variant="success" className="mb-4">Fazer Login</Button>
+            </>
+          )}
         </Container>
       </Banner>
     </Layout>
